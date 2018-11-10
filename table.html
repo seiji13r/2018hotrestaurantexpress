@@ -100,12 +100,39 @@
 
 					var tableNumber = i + 1;
 
+					var buttonCancel = $("<button>");
+					buttonCancel.addClass("btn btn-danger btn-cancel");
+					buttonCancel.text("Cancel");
+					// console.log(tableData);
+					buttonCancel.attr('id', tableData[i].customerID);
+
 
 					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>");
+					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>").append(buttonCancel);
 				}
 			});
 	}
+
+	$(document).on('click', ".btn-cancel", function(e){
+		// console.log(e);
+		var currentURL = window.location.origin;
+		// console.log(currentURL);
+		// console.log($(this).attr("id"));
+		Obj= {id: $(this).attr("id")};
+
+		// $.post(currentURL + "/api/cancel", Obj,function (data) {
+		// 	console.log("post /api/cancel");
+		// }).then(function(){
+		// 		console.log("Refrescar Tabla");
+		// 		location.reload();
+		// });
+
+		$.ajax({url: currentURL + "/api/cancel", data: Obj, method: "POST"})
+			.done(function(res){
+				console.log(res);
+				window.location.reload();
+			});
+	});
 
 	function runWaitListQuery(){
 
