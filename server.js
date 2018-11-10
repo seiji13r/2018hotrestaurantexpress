@@ -27,23 +27,21 @@ app.get("/api/waitlist", function (req, res) {
     return res.json(waitlist);
 });
 
-app.post("/reserve", function (req, res) {
+app.post("/api/tables", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     var newTable = req.body;
-
     // Using a RegEx Pattern to remove spaces from newCharacter
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
     //newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
     console.log(newTable);
-    if (tables.length <= 5) {
+    if (tables.length < 5) {
         tables.push(newTable);
     }
     else {
         waitlist.push(newTable);
     }
-
 
     res.json(newTable);
 });
