@@ -38,12 +38,14 @@ app.post("/api/tables", function (req, res) {
     console.log(newTable);
     if (tables.length < 5) {
         tables.push(newTable);
+        res.json(true);
     }
     else {
         waitlist.push(newTable);
+        res.json(false);
     }
 
-    res.json(newTable);
+    // res.json(newTable);
 });
 
 app.listen(PORT, function () {
