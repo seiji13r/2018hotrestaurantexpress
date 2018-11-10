@@ -33,7 +33,7 @@
 						<h4 class="panel-title">Current Reservations</h4>
 					</div>
 					<div class="panel-body" id="tableSection">
-                        <!--falta la linea 1 del dump-->
+					<!--falta la linea 1 del dump-->
 					</div>
 				</div>
 
@@ -108,7 +108,8 @@
 
 
 					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>").append(buttonCancel);
+					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>");
+					$("#tableWell-"+ i+1).append(buttonCancel);
 				}
 			});
 	}
